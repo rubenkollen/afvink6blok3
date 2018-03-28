@@ -12,11 +12,16 @@ public class Main {
 	
 	public static String leesBestand(String bestandsNaam){
 		return bestandsNaam;
-		
 	} 
 	
 	public static double bepaalGCpercentage(String seq){
-		return 0;
+		int GC = 0;
+		for(int i = 0; i < seq.length(); i++){
+			if(seq.charAt(i) == 'G' || seq.charAt(i) == 'C'){
+				GC++;
+			}
+		}
+		return (double)(GC/seq.length());
 		
 	}
 	
