@@ -1,9 +1,16 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+
 import javax.swing.JFileChooser;
 
 public class Main {
@@ -17,7 +24,7 @@ public static String sequentie = "";
 
 	}
 	
-	public static String leesBestand(String bestandsNaam){
+	public static String leesBestand(){
 		JFileChooser fileChooser;
 		fileChooser = new JFileChooser();
         File selectedFile;
@@ -57,6 +64,24 @@ public static String sequentie = "";
 	}
 	
 	public static void schrijfHTMLrapport(String bestandsNaam, String seq, double GCPercentage){
+		String rapport="";
+		rapport += "BestandsNaam: "+bestandsNaam+"\n";
+		rapport += "Sequentie: " + seq+"\n";
+		rapport += "GCpercentage: "+ GCPercentage+"\n";
+		
+		Writer writer;
+		try {
+			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("rapport.html"), "utf-8"));
+			writer.write(rapport);
+		} catch (UnsupportedEncodingException | FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
