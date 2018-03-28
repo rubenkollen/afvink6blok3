@@ -16,11 +16,13 @@ import javax.swing.JFileChooser;
 public class Main {
 public static String PATHWAY;
 public static String sequentie = "";
+public static String bestandsNaam;
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		/*String seq = leesBestand();
+		schrijfHTMLrapport(bestandsNaam, seq, bepaalGCpercentage(seq));*/
 
 	}
 	
@@ -31,7 +33,7 @@ public static String sequentie = "";
         int reply = fileChooser.showOpenDialog(null);                       //openen van bestand + lezen
         selectedFile = fileChooser.getSelectedFile();
         PATHWAY = selectedFile.toString();
-
+        bestandsNaam = PATHWAY.split("/")[PATHWAY.split("/").length-1];
         
         BufferedReader br = null;
         FileReader fr = null;
@@ -53,7 +55,7 @@ public static String sequentie = "";
 	} 
 	
 	public static double bepaalGCpercentage(String seq){
-		int GC = 0;
+		double GC = 0;
 		for(int i = 0; i < seq.length(); i++){
 			if(seq.charAt(i) == 'G' || seq.charAt(i) == 'C'){
 				GC++;
@@ -68,11 +70,11 @@ public static String sequentie = "";
 		rapport += "BestandsNaam: "+bestandsNaam+"\n";
 		rapport += "Sequentie: " + seq+"\n";
 		rapport += "GCpercentage: "+ GCPercentage+"\n";
-		
 		Writer writer;
 		try {
 			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("rapport.html"), "utf-8"));
 			writer.write(rapport);
+			writer.close();
 		} catch (UnsupportedEncodingException | FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
