@@ -21,8 +21,8 @@ public static String bestandsNaam;
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*String seq = leesBestand();
-		schrijfHTMLrapport(bestandsNaam, seq, bepaalGCpercentage(seq));*/
+		String seq = leesBestand();
+		schrijfHTMLrapport(bestandsNaam, seq, bepaalGCpercentage(seq));
 
 	}
 	
